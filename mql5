@@ -1,0 +1,74 @@
+
+// Obie ADX Trading Robot
+
+// Function to monitor the DI and DI- values
+void MonitorDI()
+{
+    // Code to fetch DI and DI- values from the MT4 platform
+    double DI = iADX(NULL, 0, 14, PRICE_CLOSE, MODE_PLUSDI, 0);
+    double DI_Minus = iADX(NULL, 0, 14, PRICE_CLOSE, MODE_MINUSDI, 0);
+    
+    // Code to process the DI and DI- values
+    // ...
+}
+
+// Function to detect the crossover of DI and DI-
+bool IsCrossover()
+{
+    // Code to fetch the current and previous DI and DI- values from the MT4 platform
+    double DI_Current = iADX(NULL, 0, 14, PRICE_CLOSE, MODE_PLUSDI, 0);
+    double DI_Minus_Current = iADX(NULL, 0, 14, PRICE_CLOSE, MODE_MINUSDI, 0);
+    double DI_Previous = iADX(NULL, 0, 14, PRICE_CLOSE, MODE_PLUSDI, 1);
+    double DI_Minus_Previous = iADX(NULL, 0, 14, PRICE_CLOSE, MODE_MINUSDI, 1);
+    
+    // Code to check if there is a crossover
+    if (DI_Current > DI_Minus_Current && DI_Previous < DI_Minus_Previous)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+// Function to generate buy or sell signals based on the crossover
+string GenerateSignal()
+{
+    // Code to check for crossover
+    if (IsCrossover())
+    {
+        // Code to generate buy signal
+        return 'BUY';
+    }
+    else
+    {
+        // Code to generate sell signal
+        return 'SELL';
+    }
+}
+
+// Function to display buy signals using a blue arrow
+void DisplaySignal(string signal)
+{
+    if (signal == 'BUY')
+    {
+        // Code to display blue arrow
+        // ...
+    }
+}
+
+// Main function to execute the Obie ADX system
+void OnTick()
+{
+    // Monitor DI values
+    MonitorDI();
+    
+    // Generate buy or sell signals based on crossover
+    string signal = GenerateSignal();
+    
+    // Display buy signals with blue arrow
+    DisplaySignal(signal);
+}
+
+// End of Code
